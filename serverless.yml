@@ -27,12 +27,12 @@ custom:
   ## run sls deploy --stage prod to select the config.prod.json
   ## run sls deploy --stage dev to select the config.dev.json
 
-  #secrets: ${file(./config/config.${opt:stage, self:provider.stage, 'dev'}.json)}
+  secrets: ${file(./Config/config.${opt:stage, self:provider.stage, 'dev'}.yml)}
 
   ######################################################################################
   ##                              Local Deployment Config                             ##
   ######################################################################################
-  secrets: ${file(./Config/config.offline.json)}
+  #secrets: ${file(./Config/config.offline.yml)}
 
 provider:
   name: aws
@@ -67,6 +67,10 @@ functions:
           path: /api # a must!
           method: get
           cors: true
+
+resources:
+  Resources:
+    MySqlRDSInstance: ${file(./Resource/MySql_RDS_Instance.yml)}
 
 plugins:
   - serverless-offline
