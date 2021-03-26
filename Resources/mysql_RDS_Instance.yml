@@ -1,71 +1,12 @@
 #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html
-AWSTemplateFormatVersion: 2010-09-09
-Description: >-
-  Description": "AWS CloudFormation Sample Template for creating an Amazon RDS DB instance: 
-  Sample template showing how to create a DB instance with Enhanced Monitoring enabled. 
-  **WARNING** This template creates an RDS DB instance. You will be billed for the AWS 
-  resources used if you create a stack from this template.
-Parameters:
-  DBInstanceID:
-    Default: mydbinstance
-    Description: My database instance
-    Type: String
-    MinLength: "1"
-    MaxLength: "63"
-    AllowedPattern: "[a-zA-Z][a-zA-Z0-9]*"
-    ConstraintDescription: >-
-      Must begin with a letter and must not end with a hyphen or contain two
-      consecutive hyphens.
-  DBName:
-    Default: ${self:custom.secrets.MYSQL_DB_NAME}
-    Description: My database
-    Type: String
-    MinLength: "1"
-    MaxLength: "64"
-    AllowedPattern: "[a-zA-Z][a-zA-Z0-9]*"
-    ConstraintDescription: Must begin with a letter and contain only alphanumeric characters.
-  DBInstanceClass:
-    Default: db.t2.micro
-    Description: DB instance class
-    Type: String
-    ConstraintDescription: Must select a valid DB instance type.
-  DBAllocatedStorage:
-    Default: "20"
-    Description: The size of the database (GiB)
-    Type: Number
-    MinValue: "5"
-    MaxValue: "1024"
-    ConstraintDescription: 20 GiB for db.t2.micro DB Instance class.
-  DBUsername:
-    Default: ${self:custom.secrets.MYSQL_DB_USERNAME}
-    NoEcho: "true"
-    Description: Username for MySQL database access
-    Type: String
-    MinLength: "1"
-    MaxLength: "16"
-    AllowedPattern: "[a-zA-Z][a-zA-Z0-9]*"
-    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
-  DBPassword:
-    Default: ${self:custom.secrets.MYSQL_DB_PASSWORD}
-    NoEcho: "true"
-    Description: Password MySQL database access
-    Type: String
-    MinLength: "8"
-    MaxLength: "41"
-    AllowedPattern: "[a-zA-Z0-9]*"
-    ConstraintDescription: must contain only alphanumeric characters.
-Resources:
-  MyDB:
-    Type: "AWS::RDS::DBInstance"
-    Properties:
-      DBInstanceIdentifier: !Ref DBInstanceID
-      DBName: !Ref DBName
-      DBInstanceClass: !Ref DBInstanceClass
-      AllocatedStorage: !Ref DBAllocatedStorage
-      Engine: MySQL
-      EngineVersion: 8.0.20 #check the available most current version
-      MasterUsername: !Ref DBUsername
-      MasterUserPassword: !Ref DBPassword
-      MonitoringInterval: "60"
-      MonitoringRoleArn: "arn:aws:iam::123456789012:role/rds-monitoring-role"
-      PubliclyAccessible: true
+Type: AWS::RDS::DBInstance
+Properties:
+  DBInstanceIdentifier: ${self:custom.secrets.MYSQL_DB_IDENTIFIER}
+  MasterUsername: ${self:custom.secrets.MYSQL_DB_USERNAME}
+  MasterUserPassword: ${self:custom.secrets.MYSQL_DB_PASSWORD}
+  AllocatedStorage: 20
+  DBName: ${self:custom.secrets.MYSQL_DB_NAME}
+  DBInstanceClass: db.t2.micro
+  Engine: mysql
+  EngineVersion: "8.0.20"
+  PubliclyAccessible: true
