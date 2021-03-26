@@ -1,4 +1,3 @@
-//const uuidv4 = require("uuid/v4");
 const { v4: uuidv4 } = require("uuid");
 var common = require("../Common/mysql_common");
 const Client = require("serverless-mysql");

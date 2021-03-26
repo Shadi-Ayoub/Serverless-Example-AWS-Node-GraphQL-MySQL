@@ -1,4 +1,4 @@
-#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html
+#Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html
 Type: AWS::RDS::DBInstance
 Properties:
   DBInstanceIdentifier: ${self:custom.secrets.MYSQL_DB_IDENTIFIER}

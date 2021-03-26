@@ -65,7 +65,7 @@ functions:
     handler: handler.playground
     events:
       - http:
-          path: /api # a must!
+          path: /api
           method: get
           cors: true
 
