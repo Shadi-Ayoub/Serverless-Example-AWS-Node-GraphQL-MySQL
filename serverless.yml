@@ -44,7 +44,7 @@ provider:
   environment:
     NODE_ENV: ${self:custom.secrets.NODE_ENV}
 
-    #mysql
+    #MySQL
     MYSQL_DB_IDENTIFIER: ${self:custom.secrets.MYSQL_DB_IDENTIFIER}
     MYSQL_DB_NAME: ${self:custom.secrets.MYSQL_DB_NAME}
     MYSQL_DB_USERNAME: ${self:custom.secrets.MYSQL_DB_USERNAME}

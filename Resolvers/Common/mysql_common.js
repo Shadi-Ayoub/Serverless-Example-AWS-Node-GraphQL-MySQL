@@ -2,10 +2,14 @@ exports.init = async (client) => {
   await client.query(`
       CREATE TABLE IF NOT EXISTS users
       (
-          id MEDIUMINT UNSIGNED not null AUTO_INCREMENT, 
-          created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-          uuid char(36) not null, 
-          name varchar(100) not null, 
+          id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+          created DATETIME DEFAULT CURRENT_TIMESTAMP,
+          uuid CHAR(36) NOT NULL,
+          name VARCHAR(100) NOT NULL,
+
+          username VARCHAR(50) NOT NULL UNIQUE,
+          password VARCHAR(255) NOT NULL,
+
           PRIMARY KEY (id)
       );  
       `);
@@ -13,11 +17,11 @@ exports.init = async (client) => {
   await client.query(`
       CREATE TABLE IF NOT EXISTS posts
       (
-          id MEDIUMINT UNSIGNED not null AUTO_INCREMENT,
-          created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-          uuid char(36) not null,
-          text varchar(100) not null,
-          user_id MEDIUMINT UNSIGNED not null,
+          id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+          created DATETIME DEFAULT CURRENT_TIMESTAMP,
+          uuid CHAR(36) NOT NULL,
+          text VARCHAR(100) NOT NULL,
+          user_id MEDIUMINT UNSIGNED NOT NULL,
           PRIMARY KEY (id)
       );  
       `);
