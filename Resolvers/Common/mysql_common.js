@@ -6,10 +6,6 @@ exports.init = async (client) => {
           created DATETIME DEFAULT CURRENT_TIMESTAMP,
           uuid CHAR(36) NOT NULL,
           name VARCHAR(100) NOT NULL,
-
-          username VARCHAR(50) NOT NULL UNIQUE,
-          password VARCHAR(255) NOT NULL,
-
           PRIMARY KEY (id)
       );  
       `);
