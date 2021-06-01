@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "graphql-yoga": "^1.18.3",
+    "serverless-mysql": "^1.5.4",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "serverless-offline": "^7.0.0"
+  }
+}
